@@ -17,7 +17,8 @@ public class Constants {
 		//Login
 		KEY_LOGIN = "LOGIN",
 		KEY_LOGIN_ID = "ID",
-		KEY_LOGIN_PW = "PW";
+		KEY_LOGIN_PW = "PW",
+		KEY_LOGIN_RESULT = "RESULT";
 	
 	public static final String
 		TABLE_USER_INFO = "user_info",

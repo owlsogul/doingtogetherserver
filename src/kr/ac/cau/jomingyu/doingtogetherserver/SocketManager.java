@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 public class SocketManager {
 
@@ -37,20 +36,57 @@ public class SocketManager {
 	}
 	
 	public void processeInput(SocketThread socketThread, String input){
+		// Json string to map
 		LinkedHashMap<String, String> map = JSONUtility.translateJsonToMap(input);
 		String dataType = map.get(Constants.KEY_DATATYPE);
 		String result = null;
-		Set<String> set = map.keySet();
-		for (String key : set){
-			Log.info(this.getClass(), key + " - " + map.get(key));
-		}
+
 		if (dataType.equalsIgnoreCase(Constants.KEY_REGISTER)){
 			result = processRegister(map);
 		}
+		else if (dataType.equalsIgnoreCase(Constants.KEY_LOGIN)){
+			result = processLogin(map);
+		}
+		
+		
 		Log.info(this.getClass(), "message which will be sended is " + result);
 		socketThread.sendData(result);
 	}
 	
+	public String processLogin(LinkedHashMap<String, String> map) {
+		
+		String id = map.get(Constants.KEY_LOGIN_ID);
+		String pw = map.get(Constants.KEY_LOGIN_PW);
+		
+		String query = String.format("select * from %s where %s=\"%s\" and %s=\"%s\"", Constants.TABLE_USER_INFO, Constants.COLUMN_USER_ID, id, Constants.COLUMN_USER_PW, pw);
+		ResultSet result = server.jdbcManager.executeQuery(query);
+		int row = 0;
+		
+		// 로그인으로 다시 넣기
+		map.clear();
+		map.put(Constants.KEY_DATATYPE, Constants.KEY_LOGIN);
+		map.put(Constants.KEY_LOGIN_ID, id);
+		
+		try {
+			while(result.next()){
+				row++;
+			}
+			System.out.println("row is "+row);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			map.put(Constants.KEY_LOGIN_RESULT, "400");
+			return JSONUtility.translateMapToJson(map);
+		}
+		
+		if (row >= 1){
+			map.put(Constants.KEY_LOGIN_RESULT, "777");
+		}
+		else {
+			map.put(Constants.KEY_LOGIN_RESULT, "400");
+		}
+		return JSONUtility.translateMapToJson(map);
+	}
+
 	public String processRegister(LinkedHashMap<String, String> map){
 		
 		// get data
@@ -63,7 +99,10 @@ public class SocketManager {
 		String query = String.format("select * from %s where id = \"%s\"", Constants.TABLE_USER_INFO, id);
 		ResultSet result = server.jdbcManager.executeQuery(query);
 		int row = 0;
+		
+		// register로  다시 넣기
 		map.clear();
+		map.put(Constants.KEY_DATATYPE, Constants.KEY_REGISTER);
 		
 		// 같은 게 있는지 확인하기
 		try {
