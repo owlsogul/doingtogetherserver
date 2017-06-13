@@ -16,17 +16,20 @@ public class SocketThread implements Runnable{
 	private Thread thread;
 	private BufferedReader br;
 	private PrintWriter pw;
+	private String ip;
 	
 	public SocketThread(Socket soc, SocketManager socketManager){
 		this.soc = soc;
 		this.socketManager = socketManager;
 		this.thread = new Thread(this);
+		this.ip = soc.getInetAddress().toString();
 	}
 	
 	public void ruuThread() throws IOException{
 		thread.start();
 		br = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 		pw = new PrintWriter(soc.getOutputStream());
+		Log.info(this.getClass(), ip + " 의 쓰레드가 시작됩니다.");
 		
 	}
 	
@@ -41,10 +44,14 @@ public class SocketThread implements Runnable{
 				readData();
 			} catch (IOException e) {
 				e.printStackTrace();
-				break;
+				if (e.getMessage().equalsIgnoreCase("Connection reset")){
+					System.out.println("she is rest");
+					socketManager.removeSocket(this);
+					break;
+				}
 			}
 		}
-		Log.info(this.getClass(), "NULL");
+		
 	}
 	
 	/**
@@ -54,6 +61,7 @@ public class SocketThread implements Runnable{
 	 * @throws IOException - I/O 오류가 발생했을 경우
 	 */
 	public void readData() throws IOException{
+		Log.info(this.getClass(), ip + " 입력 대기중");
 		String input = br.readLine();
 		Log.info(this.getClass(), String.format("From %s:%d, receive: %s", soc.getInetAddress().toString(), soc.getPort(), input));
 		socketManager.processeInput(this, input);

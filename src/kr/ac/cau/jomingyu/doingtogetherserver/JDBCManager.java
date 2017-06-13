@@ -23,9 +23,10 @@ public class JDBCManager {
 	}
 	
 	
-	public ResultSet sendQuery(String query){
+	public ResultSet executeQuery(String query){
 		try {
 			java.sql.Statement st = conn.createStatement();
+			//ResultSet rs = st.executeQuery(query);
 			ResultSet rs = st.executeQuery(query);
 			rs = st.getResultSet();
 			return rs;
@@ -35,9 +36,18 @@ public class JDBCManager {
 		}
  	}
 	
-	
-	
-	
+	public int updateQuery(String query){
+		try {
+			java.sql.Statement st = conn.createStatement();
+			//ResultSet rs = st.executeQuery(query);
+			int rs = st.executeUpdate(query);
+			return rs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+		
 	
 	/**
 	 * 서버와 MySQL을 연결합니다. 클래스 내부에서 연결 관련 작업이 일어납니다.

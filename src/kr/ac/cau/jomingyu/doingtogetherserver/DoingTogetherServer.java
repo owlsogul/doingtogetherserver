@@ -22,11 +22,11 @@ public class DoingTogetherServer {
 	public JDBCManager jdbcManager;
 	public String dbName = "DoingTogether";
 	public String id = "root";
-	public String pw = "owl1203jmg";
+	public String pw = "jo1203";
 	
 	public DoingTogetherServer(int port){
 		this.port = port;
-		this.socketManager = new SocketManager();
+		this.socketManager = new SocketManager(this);
 		this.jdbcManager = new JDBCManager("localhost", "3306", dbName, id, pw);
 	}
 	
