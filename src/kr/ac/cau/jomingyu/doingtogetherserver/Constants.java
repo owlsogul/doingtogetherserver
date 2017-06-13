@@ -18,7 +18,21 @@ public class Constants {
 		KEY_LOGIN = "LOGIN",
 		KEY_LOGIN_ID = "ID",
 		KEY_LOGIN_PW = "PW",
-		KEY_LOGIN_RESULT = "RESULT";
+		KEY_LOGIN_RESULT = "RESULT",
+		
+		//Upload
+		KEY_UPLOAD = "UPLOAD",
+		KEY_UPLOAD_ID = "ID",
+		KEY_UPLOAD_CONTENT = "CONTENT",
+		KEY_UPLOAD_RESULT = "RESULT",
+		
+		//Download
+		KEY_DOWNLOAD = "DOWNLOAD",
+		KEY_DOWNLOAD_ID = "ID",
+		KEY_DOWNLOAD_CONTENT = "CONTENT",
+		KEY_DOWNLOAD_RESULT = "RESULT"
+		
+		;
 	
 	public static final String
 		TABLE_USER_INFO = "user_info",
