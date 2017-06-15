@@ -35,9 +35,10 @@ public class Constants {
 		
 		//Timeline
 		KEY_SHARE = "SHARE",
+		KEY_SHARE_WRITER_ID = "WRITER_ID",
 		KEY_SHARE_WRITER_KEY = "WRITER_KEY",
 		KEY_SHARE_WRITE_TIME = "WRITE_TIME",
-		KEY_SHARE_TITLE = "TITLe",
+		KEY_SHARE_TITLE = "TITLE",
 		KEY_SHARE_PRIORITY = "PRIORITY",
 		KEY_SHARE_PEOPLE = "PEOPLE",
 		KEY_SHARE_DUEDATE = "DEU_DATE",
@@ -58,6 +59,7 @@ public class Constants {
 		
 		
 		TABLE_SHARING_INFO = "sharing_info",
+		COLUMN_SHARING_WRITER_ID = "writer_id",
 		COLUMN_SHARING_WRITER_KEY = "writer_key",
 		COLUMN_SHARING_WRITE_TIME = "write_time",
 		COLUMN_SHARING_TITLE = "title",
