@@ -12,23 +12,17 @@ create table user_info (
     phone varchar(20) not null
 );
 
-create table friend_info (
-	user_key int not null,
-    friend_key int not null
-);
-
-
 create table sharing_info (
 	sharing_key int not null auto_increment primary key,
-    writer_key int not null,
+    writer_key varchar(20) not null,
     write_time char(12) not null,
     title varchar(40) not null,
     priority int not null,
     people text not null,
     due_date char(12) not null,
     memo char(200) not null,
-    image text not null,
-    cheerup_key text not null
+    images text not null,
+    cheerup_key text
 );
 
 create table image_info (
