@@ -33,7 +33,7 @@ public class Constants {
 		KEY_DOWNLOAD_CONTENT = "CONTENT",
 		KEY_DOWNLOAD_RESULT = "RESULT",
 		
-		//Timeline
+		//Share
 		KEY_SHARE = "SHARE",
 		KEY_SHARE_WRITER_ID = "WRITER_ID",
 		KEY_SHARE_WRITER_KEY = "WRITER_KEY",
@@ -44,7 +44,10 @@ public class Constants {
 		KEY_SHARE_DUEDATE = "DEU_DATE",
 		KEY_SHARE_MEMO = "MEMO",
 		KEY_SHARE_IMAGES = "IMAGES",
-		KEY_SHARE_CHEERUP = "CHEERUP"
+		//KEY_SHARE_CHEERUP = "CHEERUP"
+		KEY_SHARE_RESULT = "RESULT"
+		
+		// timeline
 		
 		;
 	
@@ -68,7 +71,7 @@ public class Constants {
 		COLUMN_SHARING_DUEDATE = "due_date",
 		COLUMN_SHARING_MEMO = "memo",
 		COLUMN_SHARING_IMAGES = "images",
-		COLUMN_SHARING_CHEERUP_KET = "cheerup_key"
+		COLUMN_SHARING_CHEERUP_KEY = "cheerup_key"
 		;
 	
 	

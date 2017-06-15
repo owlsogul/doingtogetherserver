@@ -14,8 +14,8 @@ create table user_info (
 
 create table sharing_info (
 	sharing_key int not null auto_increment primary key,
-    writer_key varchar(20) not null,
-    writer_id int not null,
+    writer_key int not null,
+    writer_id varchar(20) not null,
     write_time char(12) not null,
     title varchar(40) not null,
     priority int not null,
