@@ -18,6 +18,7 @@ public class Constants {
 		KEY_LOGIN = "LOGIN",
 		KEY_LOGIN_ID = "ID",
 		KEY_LOGIN_PW = "PW",
+		KEY_LOGIN_KEY = "KEY",
 		KEY_LOGIN_RESULT = "RESULT",
 		
 		//Upload
