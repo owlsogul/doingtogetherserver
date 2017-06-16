@@ -1,5 +1,6 @@
 package kr.ac.cau.jomingyu.doingtogetherserver;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,13 +25,20 @@ public class DoingTogetherServer {
 	public String id = "root";
 	public String pw = "jo1203";
 	
+	public File dataFolder;
+	public String dataFolderName = "data";
+	
 	public DoingTogetherServer(int port){
 		this.port = port;
 		this.socketManager = new SocketManager(this);
 		this.jdbcManager = new JDBCManager("localhost", "3306", dbName, id, pw);
+		this.dataFolder = new File(dataFolderName);
 	}
 	
 	public void open(){
+		if (!dataFolder.exists()){
+			dataFolder.mkdirs();
+		}
 		if (jdbcManager.connectMySQL()){
 			Log.info(this.getClass(), "MySQL과 연결되었습니다");
 		}

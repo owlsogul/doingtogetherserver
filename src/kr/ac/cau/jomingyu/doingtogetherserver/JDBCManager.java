@@ -23,7 +23,7 @@ public class JDBCManager {
 	}
 	
 	
-	public ResultSet executeQuery(String query){
+	public ResultSet executeQuery(String query) throws NullPointerException{
 		try {
 			java.sql.Statement st = conn.createStatement();
 			//ResultSet rs = st.executeQuery(query);

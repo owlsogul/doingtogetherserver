@@ -19,7 +19,7 @@ create table sharing_info (
     write_time char(12) not null,
     title varchar(40) not null,
     priority int not null,
-    people text not null,
+    people text not null,	
     due_date char(12) not null,
     memo char(200) not null,
     images text not null,
